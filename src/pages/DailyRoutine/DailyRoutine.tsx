@@ -36,7 +36,7 @@ const DailyRoutine: React.VFC = () => {
 
   return (
     <div>
-      <div className='make_your_routine'>
+      <div className='line anim-typewriter'>
       Make your routine
       </div>
       <form onSubmit={handleSubmit}>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './DailyRoutine.css';
 
 type Routine = {
   id: number;
@@ -35,9 +36,9 @@ const DailyRoutine: React.VFC = () => {
 
   return (
     <div>
-      <h1>
+      <div className='make_your_routine'>
       Make your routine
-      </h1>
+      </div>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="write" value={routine} onChange={handleChange}/>
         <input type="submit" value="add" />

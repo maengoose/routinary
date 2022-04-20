@@ -2,16 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
 .line {
-  padding: 1em; /* 안쪽 여백 */
+  padding: 1em;
   font-family: 'Nanum Myeongjo', serif;
-  margin: 0 auto; /*바깥 여백*/
+  margin: 0 auto; 
   font-size: 2em;
-  text-align: center; /* 텍스트 가운데 정렬*/
-  overflow: hidden; /* 텍스트 블록에 맞게 텍스르 자름 */
-  /* border-right: .05em solid black; blinkTextCursor 색상 */
-  white-space: nowrap; /* 텍스트 블록 넘어가도록 */
+  text-align: center; 
+  overflow: hidden; 
+  /* border-right: .05em solid black;*/
+  white-space: nowrap; 
   animation: 
-    typewriter 3.5s steps(40, end), /* 3.5초 동안 40 단계에 걸쳐서 변화한다*/
+    typewriter 3.5s steps(40, end), 
     blinkTextCursor .75s step-end;
 }
 

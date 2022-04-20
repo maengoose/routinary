@@ -1,31 +1,35 @@
 import { useState } from 'react';
-import TimePicker, { TimePickerValue } from 'react-time-picker';
 
 import './DailyRoutine.css';
 
 type Routine = {
   id: number;
   title: string;
-  startTime: number;
-  time: number;
+  startTime: string;
+  time: string;
 }
 
 const DailyRoutine: React.VFC = () => {
   const [routine, setRoutine] = useState('');
+  const [time, setTime] = useState('');
+  const [duration, setDuration] = useState('0');
   const [routines, setRoutines] = useState<Routine[]>([]);
-  const [time, setTime] = useState<TimePickerValue>('10:00');
 
-  const handlePicker = (value: TimePickerValue) => {
-  setTime(value)
-}
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleChangeRoutine: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setRoutine(event.target.value);
+  }
+
+  const handleChangeTime: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setTime(event.target.value);
+  }
+
+  const handleChangeDuration: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setDuration(event.target.value);
   }
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    if (!routine) {
+    if (!routine || !time) {
       return;
     }
 
@@ -34,8 +38,8 @@ const DailyRoutine: React.VFC = () => {
       {
         id: prevState.length,
         title: routine,
-        startTime: 20,
-        time: 2
+        startTime: time,
+        time: duration
       }
     ]);
     setRoutine('');
@@ -44,17 +48,21 @@ const DailyRoutine: React.VFC = () => {
   return (
     <div>
       <div className='line anim-typewriter'>
-      Make your routine
+        Make your routine
       </div>
       <form onSubmit={handleSubmit}>
-        <TimePicker onChange={handlePicker} value={time}/>
-        <input type="text" placeholder="write" value={routine} onChange={handleChange}/>
+        <input type="time" value={time} onChange={handleChangeTime} />
+        <input type="text" placeholder="write" value={routine} onChange={handleChangeRoutine} />
+        <div>
+          <input type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration}/>
+          <label htmlFor="duration">{duration}min</label>
+        </div>
         <input type="submit" value="add" />
       </form>
 
       <ul>
-        {routines.map(({ id, title, startTime }) => (
-          <li key={id}>{startTime} {title}</li>
+        {routines.map(({ id, title, startTime, time }) => (
+          <li key={id}>{startTime} {title} / {time}</li>
         ))}
       </ul>
     </div>

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import TimePicker, { TimePickerValue } from 'react-time-picker';
+
 import './DailyRoutine.css';
 
 type Routine = {
@@ -11,6 +13,11 @@ type Routine = {
 const DailyRoutine: React.VFC = () => {
   const [routine, setRoutine] = useState('');
   const [routines, setRoutines] = useState<Routine[]>([]);
+  const [time, setTime] = useState<TimePickerValue>('10:00');
+
+  const handlePicker = (value: TimePickerValue) => {
+  setTime(value)
+}
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setRoutine(event.target.value);
@@ -40,6 +47,7 @@ const DailyRoutine: React.VFC = () => {
       Make your routine
       </div>
       <form onSubmit={handleSubmit}>
+        <TimePicker onChange={handlePicker} value={time}/>
         <input type="text" placeholder="write" value={routine} onChange={handleChange}/>
         <input type="submit" value="add" />
       </form>

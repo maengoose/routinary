@@ -14,6 +14,7 @@ const DailyRoutine: React.VFC = () => {
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('0');
   const [routines, setRoutines] = useState<Routine[]>([]);
+  const [id, setId] = useState(100);
 
   const handleChangeRoutine: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setRoutine(event.target.value);
@@ -27,16 +28,23 @@ const DailyRoutine: React.VFC = () => {
     setDuration(event.target.value);
   }
 
+  const handleDeleteRoutine = (id: number) => {
+    const newRoutines = routines.filter(routine => routine.id !== id);
+    setRoutines(newRoutines);
+  }
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     if (!routine || !time) {
       return;
     }
 
+    setId(id + 1);
+
     setRoutines((prevState) => [
       ...prevState,
       {
-        id: prevState.length,
+        id: id,
         title: routine,
         startTime: time,
         time: duration
@@ -62,7 +70,12 @@ const DailyRoutine: React.VFC = () => {
 
       <ul>
         {routines.map(({ id, title, startTime, time }) => (
-          <li key={id}>{startTime} {title} / {time}</li>
+          <li key={id}>
+            {startTime} Routine: {title}  {time}min
+            <button type='button' onClick={() => handleDeleteRoutine(id)}>
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
     </div>

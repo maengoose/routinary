@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import CreateRoutine from '../../components/CreateRoutine';
+
 import './DailyRoutine.css';
 
 type Routine = {
@@ -15,6 +17,7 @@ const DailyRoutine: React.VFC = () => {
   const [duration, setDuration] = useState('0');
   const [routines, setRoutines] = useState<Routine[]>([]);
   const [id, setId] = useState(100);
+  const [open, setOpen] = useState(false);
 
   const handleChangeRoutine: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setRoutine(event.target.value);
@@ -53,11 +56,26 @@ const DailyRoutine: React.VFC = () => {
     setRoutine('');
   }
 
+  const handleOpen = () => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+
   return (
     <div>
       <div className='line anim-typewriter'>
         Make your routine
       </div>
+      
+      <button onClick={handleOpen}>create routine</button>
+      <CreateRoutine
+        open={open}
+        onClose={handleClose}
+      />
+
       <form onSubmit={handleSubmit}>
         <input type="time" value={time} onChange={handleChangeTime} />
         <input type="text" placeholder="write" value={routine} onChange={handleChangeRoutine} />

@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-
-import './Home.css';
+import { useNavigate } from "react-router-dom";
+import * as Styled from './style';
 
 const Home: React.VFC = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/routine');
+  }
+  
   return (
-    <div className='background'>
-      <Link to='/routine' className='link'>
-        <Button variant='contained'>Daily Routine</Button>
-      </Link>
-    </div>
+    <Styled.BackgroundBox>
+      <Styled.RoutineButton variant='contained' onClick={handleClick}>
+        Daily Routine
+      </Styled.RoutineButton>
+    </Styled.BackgroundBox>
   );
 }
 

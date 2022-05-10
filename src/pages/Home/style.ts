@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import natureyoga from './images/natureyoga.jpg';
-import Lora from '../../styles/fonts/Lora.ttf';
 
 export const BackgroundBox = styled(Box)`
   background-image: url(${natureyoga});
@@ -23,9 +22,6 @@ export const RoutineButton = styled(Button)`
     background-color: #EFEAD8;
     color: #6D8B74;
   }
-  @font-face {
-    font-family: Lora;
-    src: url(${Lora});
-  }
+  font-family: Lora;
 `;
 

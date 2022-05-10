@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import natureyoga from './images/natureyoga.jpg';
+import Lora from '../../styles/fonts/Lora.ttf';
 
 export const BackgroundBox = styled(Box)`
   background-image: url(${natureyoga});
@@ -12,11 +13,19 @@ export const BackgroundBox = styled(Box)`
 `;
 
 export const RoutineButton = styled(Button)`
-  text-decoration: none;
   background-color: #D0C9C0;
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: inherit;
+  &:hover {
+    background-color: #EFEAD8;
+    color: #6D8B74;
+  }
+  @font-face {
+    font-family: Lora;
+    src: url(${Lora});
+  }
 `;
 

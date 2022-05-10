@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import CreateRoutine from '../../components/CreateRoutine';
 
-import './DailyRoutine.css';
+import * as Styled from './style';
 
 const DailyRoutine: React.VFC = () => {
   const [open, setOpen] = useState(false);
@@ -17,9 +17,9 @@ const DailyRoutine: React.VFC = () => {
 
   return (
     <div>
-      <div className='line anim-typewriter'>
+      <Styled.TextAnime>
         Make your routine
-      </div>
+      </Styled.TextAnime>
       
       <button onClick={handleOpen}>create routine</button>
       <CreateRoutine

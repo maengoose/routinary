@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import Button from '@mui/material/Button';
 // @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
 
 export const typewriter = keyframes`
@@ -34,3 +35,15 @@ export const TextAnime = styled.div`
     ${typewriter} 3.5s steps(40, end), 
     ${blinkTextCursor} .75s step-end;
 `
+
+export const CreateDailyRoutine = styled(Button)`
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  &:hover {
+    color: #6D8B74;
+  }
+  font-family: Lora;
+`;

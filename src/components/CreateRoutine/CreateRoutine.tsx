@@ -1,6 +1,6 @@
-import Modal from '@mui/material/Modal';
-
+import * as Styled from './style';
 import { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
   open: boolean;
@@ -60,11 +60,14 @@ const CreateRoutine: React.VFC<Props> = (props) => {
   }
 
   return (
-    <Modal
+    <Styled.ModalStyle
       open={open}
       onClose={onClose}
     >
       <div>
+        <Styled.CloseButton arial-label='close'>
+          <CloseIcon />
+        </Styled.CloseButton>
         <form onSubmit={handleSubmit}>
         <input type="time" value={time} onChange={handleChangeTime} />
         <input type="text" placeholder="write" value={routine} onChange={handleChangeRoutine} />
@@ -86,7 +89,7 @@ const CreateRoutine: React.VFC<Props> = (props) => {
         ))}
       </ul>
       </div>
-    </Modal>
+    </Styled.ModalStyle>
   )
 }
 

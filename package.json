@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.4",
     "@mui/styled-engine-sc": "npm:@mui/styled-engine-sc@latest",
     "@testing-library/jest-dom": "^5.14.1",

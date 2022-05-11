@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 type Props = {
   open: boolean;
   onClose: () => void;
+  onAddRoutine: (routine: Routine) => void;
 };
 
 type Routine = {
@@ -15,11 +16,11 @@ type Routine = {
 }
 
 const CreateRoutine: React.VFC<Props> = (props) => {
-  const { open, onClose } = props;
+  const { open, onClose, onAddRoutine } = props;
   const [routine, setRoutine] = useState('');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('0');
-  const [routines, setRoutines] = useState<Routine[]>([]);
+  // const [routines, setRoutines] = useState<Routine[]>([]);
   const [id, setId] = useState(100);
 
   const handleChangeRoutine: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -34,11 +35,6 @@ const CreateRoutine: React.VFC<Props> = (props) => {
     setDuration(event.target.value);
   }
 
-  const handleDeleteRoutine = (id: number) => {
-    const newRoutines = routines.filter(routine => routine.id !== id);
-    setRoutines(newRoutines);
-  }
-
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     if (!routine || !time) {
@@ -47,15 +43,13 @@ const CreateRoutine: React.VFC<Props> = (props) => {
 
     setId(id + 1);
 
-    setRoutines((prevState) => [
-      ...prevState,
-      {
-        id: id,
-        title: routine,
-        startTime: time,
-        time: duration
-      }
-    ]);
+    const objRoutine = {
+      id: id,
+      title: routine,
+      startTime: time,
+      time: duration
+    };
+    onAddRoutine(objRoutine)
     setRoutine('');
   }
 
@@ -76,17 +70,6 @@ const CreateRoutine: React.VFC<Props> = (props) => {
         </div>
         <input type="submit" value="add" />
       </form>
-
-      <ul>
-        {routines.map(({ id, title, startTime, time }) => (
-          <li key={id}>
-            {startTime} Routine: {title}  {time}min
-            <button type='button' onClick={() => handleDeleteRoutine(id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
       </div>
     </Styled.ModalStyle>
   )

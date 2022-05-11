@@ -62,10 +62,9 @@ const CreateRoutine: React.VFC<Props> = (props) => {
   return (
     <Styled.ModalStyle
       open={open}
-      onClose={onClose}
     >
       <div>
-        <Styled.CloseButton arial-label='close'>
+        <Styled.CloseButton onClick={onClose}>
           <CloseIcon />
         </Styled.CloseButton>
         <form onSubmit={handleSubmit}>

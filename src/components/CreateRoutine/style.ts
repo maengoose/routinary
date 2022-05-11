@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { IconButton } from "@mui/material";
 import Modal from '@mui/material/Modal';
+import { Button } from "@mui/material";
 
 export const ModalStyle = styled(Modal)`
   position: absolute;
@@ -15,10 +15,6 @@ export const ModalStyle = styled(Modal)`
   transform: translate(-50%, -50%);
 `
 
-// export const BoxStyle = styled.div`
-//   opacity: ;
-// `
-
-export const CloseButton = styled(IconButton)`
+export const CloseButton = styled(Button)`
   color: black;
 `

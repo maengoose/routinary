@@ -20,7 +20,6 @@ const CreateRoutine: React.VFC<Props> = (props) => {
   const [routine, setRoutine] = useState('');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('0');
-  // const [routines, setRoutines] = useState<Routine[]>([]);
   const [id, setId] = useState(100);
 
   const handleChangeRoutine: React.ChangeEventHandler<HTMLInputElement> = (event) => {

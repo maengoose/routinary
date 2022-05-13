@@ -1,6 +1,6 @@
 import HomeIcon from '@mui/icons-material/Home';
-import { IconButton } from '@mui/material';
 import { useNavigate } from 'react-router';
+import * as Styled from './style';
 
 const SideBar: React.VFC = () => {
   const navigate = useNavigate();
@@ -10,9 +10,9 @@ const SideBar: React.VFC = () => {
   }
 
   return (
-    <IconButton onClick={handleClick}>
-      <HomeIcon />
-    </IconButton>
+      <Styled.SideBarBox onClick={handleClick}>
+        <HomeIcon />
+      </Styled.SideBarBox>
   )
 }
 

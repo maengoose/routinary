@@ -24,6 +24,13 @@ export const blinkTextCursor = keyframes`
 `
 
 export const TextAnime = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+
   padding: 1em;
   font-family: 'Nanum Myeongjo', serif;
   margin: 0 auto; 

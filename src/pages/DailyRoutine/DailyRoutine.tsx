@@ -39,7 +39,12 @@ const DailyRoutine: React.VFC = () => {
         Make your routine
       </Styled.TextAnime>
       
-      <Styled.CreateDailyRoutine variant='outlined' onClick={handleOpen}>create routine</Styled.CreateDailyRoutine>
+      <Styled.CreateDailyRoutine
+        variant='outlined'
+        onClick={handleOpen}
+      >
+        create routine
+      </Styled.CreateDailyRoutine>
       <CreateRoutine
         open={open}
         onClose={handleClose}

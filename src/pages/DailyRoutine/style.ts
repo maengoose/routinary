@@ -53,4 +53,22 @@ export const CreateDailyRoutine = styled(Button)`
     color: #6D8B74;
   }
   font-family: Lora;
-`;
+`
+
+export const EmptyText = styled.p`
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+`
+
+export const RoutineList = styled.ul`
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+`

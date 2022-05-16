@@ -50,16 +50,20 @@ const DailyRoutine: React.VFC = () => {
         onClose={handleClose}
         onAddRoutine={handleAddRoutine}
       />
-      <ul>
-        {routines.map(({ id, title, startTime, time }: Routine) => (
-          <li key={id}>
-            {startTime} Routine: {title}  {time}min
-            <button type='button' onClick={() => handleDeleteRoutine(id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      {routines.length === 0 ? (
+        <Styled.EmptyText> Add your routine </Styled.EmptyText>
+      ) :
+        <Styled.RoutineList>
+          {routines.map(({ id, title, startTime, time }: Routine) => (
+            <li key={id}>
+              {startTime} Routine: {title}  {time}min
+              <button type='button' onClick={() => handleDeleteRoutine(id)}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </Styled.RoutineList>
+      }
     </div>
   )
 }

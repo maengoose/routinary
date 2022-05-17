@@ -61,17 +61,17 @@ const CreateRoutine: React.VFC<Props> = (props) => {
         <Styled.CloseButton onClick={onClose}>
           <CloseIcon />
         </Styled.CloseButton>
-        <form onSubmit={handleSubmit}>
-          <input type="time" value={time} onChange={handleChangeTime} />
+        <Styled.CreateRoutineForm onSubmit={handleSubmit}>
+          <Styled.TimeInput type="time" value={time} onChange={handleChangeTime} />
         <div>
-          <input type="text" placeholder="write" value={routine} onChange={handleChangeRoutine} />
+          <Styled.TextInput type="text" placeholder="write" value={routine} onChange={handleChangeRoutine} />
         </div>
         <div>
-          <input type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration}/>
+          <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration}/>
           <label htmlFor="duration">{duration}min</label>
         </div>
         <input type="submit" value="add" />
-      </form>
+      </Styled.CreateRoutineForm>
       </Styled.PopUp>
     </Styled.ModalStyle>
   )

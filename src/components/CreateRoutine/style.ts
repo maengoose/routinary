@@ -32,3 +32,59 @@ export const PopUp = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 10px;
 `
+
+export const TimeInput = styled.input`
+  border: none;
+  border-radius: 5px;
+  color: #001D6E;
+  background-color: #FEFBE7;
+  margin: 5px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+`
+
+export const TextInput = styled.input`
+  border: none;
+  border-radius: 5px;
+  color: #001D6E;
+  background-color: #FEFBE7;
+  padding-left: 10px;
+  margin: 5px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+`
+
+export const RangeInput = styled.input`
+  background: #F9EBC8;
+  -webkit-appearance: none;
+  margin: 5px;
+  width: 180px;
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    animate: 0.2s;
+    background-color: #FEFBE7;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  &::-webkit-slider-thumb {
+  border: #FEFBE7;
+  height: 30px;
+  width: 10px;
+  border-radius: 5px;
+  background: #9AD0EC;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -11px;
+  }
+`
+
+export const CreateRoutineForm = styled.form`
+  text-align: center;
+`

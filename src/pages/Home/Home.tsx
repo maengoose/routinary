@@ -4,16 +4,20 @@ import * as Styled from './style';
 const Home: React.VFC = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleRoutineClick = () => {
     navigate('/routine');
+  }
+
+  const handleMusicClick = () => {
+    navigate('/music');
   }
   
   return (
     <Styled.BackgroundBox>
-      <Styled.RoutineButton variant='contained' onClick={handleClick}>
+      <Styled.RoutineButton variant='contained' onClick={handleRoutineClick}>
         Daily Routine
       </Styled.RoutineButton>
-      <Styled.MeditationButton variant='contained'>
+      <Styled.MeditationButton variant='contained' onClick={handleMusicClick}>
         Meditation
       </Styled.MeditationButton>
     </Styled.BackgroundBox>

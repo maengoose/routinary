@@ -15,7 +15,7 @@ export const RoutineButton = styled(Button)`
   background-color: #D0C9C0;
   position: absolute;
   top: 70%;
-  left: 50%;
+  left: 40%;
   transform: translate(-50%, -50%);
   border-radius: inherit;
   &:hover {
@@ -24,4 +24,18 @@ export const RoutineButton = styled(Button)`
   }
   font-family: Lora;
 `;
+
+export const MeditationButton = styled(Button)`
+  background-color: #D0C9C0;
+  position: absolute;
+  top: 70%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  &:hover {
+    background-color: #EFEAD8;
+    color: #6D8B74;
+  }
+  font-family: Lora;
+`
 

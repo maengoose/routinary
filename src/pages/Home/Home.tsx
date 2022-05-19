@@ -14,9 +14,9 @@ const Home: React.VFC = () => {
       <Styled.RoutineButton variant='contained' onClick={handleClick}>
         Daily Routine
       </Styled.RoutineButton>
-      <Button>
+      <Styled.MeditationButton variant='contained'>
         Meditation
-      </Button>
+      </Styled.MeditationButton>
     </Styled.BackgroundBox>
   );
 }

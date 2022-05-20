@@ -88,3 +88,14 @@ export const RangeInput = styled.input`
 export const CreateRoutineForm = styled.form`
   text-align: center;
 `
+
+export const AddButton = styled.input`
+  border: solid;
+  border-radius: 5px;
+  color: #5F7161;
+  background-color: #FEFBE7;
+  margin: 5px;
+  width: 50px;
+  height: 20px;
+  text-align: center;
+`

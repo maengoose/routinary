@@ -1,8 +1,11 @@
-import * as Styled from './style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import CloseIcon from '@mui/icons-material/Close';
 
+import * as Styled from './style';
+
 type Props = {
+  routine?: Routine;
   open: boolean;
   onClose: () => void;
   onAddRoutine: (routine: Routine) => void;
@@ -17,13 +20,13 @@ type Routine = {
 
 const CreateRoutine: React.VFC<Props> = (props) => {
   const { open, onClose, onAddRoutine } = props;
-  const [routine, setRoutine] = useState('');
+  const [title, setTitle] = useState('');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('0');
   const [id, setId] = useState(100);
 
-  const handleChangeRoutine: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    setRoutine(event.target.value);
+  const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setTitle(event.target.value);
   }
 
   const handleChangeTime: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -36,7 +39,7 @@ const CreateRoutine: React.VFC<Props> = (props) => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    if (!routine || !time) {
+    if (!title || !time) {
       return;
     }
 
@@ -44,13 +47,22 @@ const CreateRoutine: React.VFC<Props> = (props) => {
 
     const objRoutine = {
       id: id,
-      title: routine,
+      title,
       startTime: time,
       time: duration
     };
     onAddRoutine(objRoutine)
-    setRoutine('');
+    setTitle('');
   }
+
+  useEffect(() => {
+    if (props.routine) {
+      setTitle(props.routine.title);
+      setId(props.routine.id);
+      setTime(props.routine.startTime);
+      setDuration(props.routine.time);
+    }
+  }, [props.routine]);
 
   return (
     <Styled.ModalStyle
@@ -64,7 +76,7 @@ const CreateRoutine: React.VFC<Props> = (props) => {
         <Styled.CreateRoutineForm onSubmit={handleSubmit}>
           <Styled.TimeInput type="time" value={time} onChange={handleChangeTime} />
         <div>
-          <Styled.TextInput type="text" placeholder="write" value={routine} onChange={handleChangeRoutine} />
+          <Styled.TextInput type="text" placeholder="write" value={title} onChange={handleChangeTitle} />
         </div>
         <div>
           <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration}/>

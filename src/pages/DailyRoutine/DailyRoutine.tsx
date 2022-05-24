@@ -44,14 +44,19 @@ const DailyRoutine: React.VFC = () => {
     setRoutine(routine);
     setOpen(true);
     // 모달을 연다.
-
-    //TODO: routine의 id가 같으면 open modal
-    // const editRoutine = routines.map(routine => routine.id === id ? );
-    // setRoutines(editRoutine);
   }
 
   const handleAddRoutine = (routine: Routine) => {
+    console.log('routine: ', routine);
     setRoutines([...routines, routine]);
+  }
+
+  const handleEditRoutine = (routine: Routine) => {
+    // const index = routines
+    //   .findIndex(r => r.id === routine.id);
+    
+    // setRoutines([...routines.slice(0, index), routine, ...routines.slice(index + 1)]);
+    setRoutines(routines.map((it) => it.id === routine.id ? routine : it));
   }
 
   return (
@@ -71,6 +76,7 @@ const DailyRoutine: React.VFC = () => {
         open={open}
         onClose={handleClose}
         onAddRoutine={handleAddRoutine}
+        onEditRoutine={handleEditRoutine}
       />
       {routines.length === 0 ? (
         <Styled.EmptyText> Add your routine </Styled.EmptyText>

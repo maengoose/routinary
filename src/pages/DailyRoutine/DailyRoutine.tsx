@@ -30,11 +30,6 @@ const DailyRoutine: React.VFC = () => {
     setRoutines(newRoutines);
   }
 
-  // 1. 이해
-  // 원하는 것: 루틴 수정하기
-
-  // 1. 이해
-  // 원하는 것: 수정할 모달을 여는 것
   const handleClickOpenEditModal = (id: number) => {
     const routine = routines.find((it) => it.id === id);
     if (!routine) {

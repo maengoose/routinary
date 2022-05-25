@@ -63,7 +63,7 @@ const CreateRoutine: React.VFC<Props> = (props) => {
     // 2. 계획
 
     // setId(id + 1);
-
+//TODO: setID 수정하기
     const objRoutine = {
       id: 1,
       title,

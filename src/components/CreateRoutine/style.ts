@@ -99,3 +99,7 @@ export const AddButton = styled.input`
   height: 20px;
   text-align: center;
 `
+
+export const DurationTimeFont = styled.label`
+  font-family: Lora;
+`

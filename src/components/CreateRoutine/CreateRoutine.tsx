@@ -99,7 +99,7 @@ const CreateRoutine: React.VFC<Props> = (props) => {
         </div>
         <div>
           <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration}/>
-          <label htmlFor="duration">{duration}min</label>
+          <Styled.DurationTimeFont htmlFor="duration">{duration}min</Styled.DurationTimeFont>
         </div>
         <Styled.AddButton type="submit" value="add" />
       </Styled.CreateRoutineForm>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as Styled from './style';
 
-const Home: React.VFC = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
 
   const handleRoutineClick = () => {
@@ -11,7 +11,7 @@ const Home: React.VFC = () => {
   const handleMusicClick = () => {
     navigate('/music');
   }
-  
+
   return (
     <Styled.BackgroundBox>
       <Styled.RoutineButton variant='contained' onClick={handleRoutineClick}>

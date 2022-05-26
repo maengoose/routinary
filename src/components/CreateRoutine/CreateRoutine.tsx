@@ -19,7 +19,7 @@ type Routine = {
   time: string;
 }
 
-const CreateRoutine: React.VFC<Props> = (props) => {
+const CreateRoutine: React.FC<Props> = (props) => {
   const { open, onClose, onAddRoutine, onEditRoutine } = props;
   const [title, setTitle] = useState('');
   const [time, setTime] = useState('');
@@ -63,7 +63,7 @@ const CreateRoutine: React.VFC<Props> = (props) => {
     // 2. 계획
 
     // setId(id + 1);
-//TODO: setID 수정하기
+    //TODO: setID 수정하기
     const objRoutine = {
       id: 1,
       title,
@@ -85,24 +85,24 @@ const CreateRoutine: React.VFC<Props> = (props) => {
 
   return (
     <Styled.ModalStyle
-      BackdropProps={{style: {background: 'none'}}}
+      BackdropProps={{ style: { background: 'none' } }}
       open={open}
     >
-    <Styled.PopUp>
+      <Styled.PopUp>
         <Styled.CloseButton onClick={onClose}>
           <CloseIcon />
         </Styled.CloseButton>
         <Styled.CreateRoutineForm onSubmit={handleSubmit}>
           <Styled.TimeInput type="time" value={time} onChange={handleChangeTime} />
-        <div>
-          <Styled.TextInput type="text" placeholder="write" value={title} onChange={handleChangeTitle} />
-        </div>
-        <div>
-          <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration}/>
-          <Styled.DurationTimeFont htmlFor="duration">{duration}min</Styled.DurationTimeFont>
-        </div>
-        <Styled.AddButton type="submit" value="add" />
-      </Styled.CreateRoutineForm>
+          <div>
+            <Styled.TextInput type="text" placeholder="write" value={title} onChange={handleChangeTitle} />
+          </div>
+          <div>
+            <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration} />
+            <Styled.DurationTimeFont htmlFor="duration">{duration}min</Styled.DurationTimeFont>
+          </div>
+          <Styled.AddButton type="submit" value="add" />
+        </Styled.CreateRoutineForm>
       </Styled.PopUp>
     </Styled.ModalStyle>
   )

@@ -3,7 +3,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router';
 import * as Styled from './style';
 
-const SideBar: React.VFC = () => {
+const SideBar: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClickHome = () => {
@@ -16,10 +16,10 @@ const SideBar: React.VFC = () => {
 
   return (
     <>
-    <Styled.SideBarBox>
-      <HomeIcon onClick={handleClickHome}/>
-      <LoginIcon onClick={handleClickLogin}/>
-    </Styled.SideBarBox>
+      <Styled.SideBarBox>
+        <HomeIcon onClick={handleClickHome} />
+        <LoginIcon onClick={handleClickLogin} />
+      </Styled.SideBarBox>
     </>
   )
 }

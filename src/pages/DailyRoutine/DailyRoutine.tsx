@@ -11,7 +11,7 @@ type Routine = {
   time: string;
 }
 
-const DailyRoutine: React.VFC = () => {
+const DailyRoutine: React.FC = () => {
   const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
   const [routines, setRoutines] = useState<Routine[]>([]);
@@ -49,7 +49,7 @@ const DailyRoutine: React.VFC = () => {
   const handleEditRoutine = (routine: Routine) => {
     // const index = routines
     //   .findIndex(r => r.id === routine.id);
-    
+
     // setRoutines([...routines.slice(0, index), routine, ...routines.slice(index + 1)]);
     setRoutines(routines.map((it) => it.id === routine.id ? routine : it));
   }
@@ -59,7 +59,7 @@ const DailyRoutine: React.VFC = () => {
       <Styled.TextAnime>
         Make your routine
       </Styled.TextAnime>
-      
+
       <Styled.CreateDailyRoutine
         variant='outlined'
         onClick={handleOpen}

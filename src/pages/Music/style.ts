@@ -1,9 +1,10 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
-// import rain from './images/rain.jpg';
+
+import rain from './images/rain.jpg';
 import rainy from './images/rainy.gif';
 
-export const RainMusicButton = styled(Button)`
+export const RainMusicButton = styled(Button) < { playing: boolean}>`
     position: absolute;
     top: 10%;
     left: 50%;
@@ -15,7 +16,11 @@ export const RainMusicButton = styled(Button)`
     justifyContent: center;
     backgroundPosition: center;
     backgroundSize: cover;
-    background-image: url(${rainy});
+    background-image: url(${rain});
     font-family: Lora;
     color: black;
+
+    ${props => props.playing && `
+        background-image: url(${rainy});
+    `}
 `

@@ -13,6 +13,7 @@ export const BackgroundBox = styled(Box)`
 
 export const RoutineButton = styled(Button)`
   background-color: #D0C9C0;
+  color: black;
   position: absolute;
   top: 70%;
   left: 40%;
@@ -27,6 +28,7 @@ export const RoutineButton = styled(Button)`
 
 export const MeditationButton = styled(Button)`
   background-color: #D0C9C0;
+  color: black;
   position: absolute;
   top: 70%;
   left: 60%;

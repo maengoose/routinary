@@ -4,35 +4,31 @@ import * as Styled from './style';
 
 import Rain from './WhiteNoise/Rain.mp3';
 
-const useAudio = (url: any): [boolean, () => void] => {
+const useAudio = (url: string): [boolean, (playing: boolean) => void] => {
   const audio = useRef(new Audio(url));
   const [playing, setPlaying] = useState(false);
 
-  const togglePlaying = () => setPlaying(!playing);
-
   useEffect(() => {
-    if (!audio.current) {
-      return;
-    }
-
-    if (playing) {
-      audio.current.play()
-    } else {
-      audio.current.pause()
+    if (audio.current) {
+      if (playing) {
+        audio.current.play()
+      } else {
+        audio.current.pause()
+      }
     }
   }, [playing]);
 
-  return [playing, togglePlaying];
+  return [playing, setPlaying];
 };
 
-const Music: React.VFC = () => {
-  const [playing, togglePlaying] = useAudio(Rain);
+const Music: React.FC = () => {
+  const [playing, setPlaying] = useAudio(Rain);
 
   return (
     <Styled.RainMusicButton
       playing={playing}
       onClick={() => {
-        togglePlaying()
+        setPlaying(!playing)
       }}
     >
       Rain

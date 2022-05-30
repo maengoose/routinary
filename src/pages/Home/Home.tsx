@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as Styled from './style';
+import Clock from 'react-live-clock';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
 
   return (
     <Styled.BackgroundBox>
+      <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} />
       <Styled.RoutineButton variant='contained' onClick={handleRoutineClick}>
         Daily Routine
       </Styled.RoutineButton>

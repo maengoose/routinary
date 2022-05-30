@@ -4,8 +4,8 @@ import { Button } from "@mui/material";
 
 export const ModalStyle = styled(Modal)`
   position: absolute;
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
 
   top: 50%;
   left: 50%;

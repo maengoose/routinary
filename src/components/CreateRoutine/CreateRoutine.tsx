@@ -44,8 +44,6 @@ const CreateRoutine: React.FC<Props> = (props) => {
       return;
     }
 
-    console.log('id: ', id);
-    // 수정중이야!
     if (id !== 0) {
       onEditRoutine({
         id,
@@ -56,13 +54,6 @@ const CreateRoutine: React.FC<Props> = (props) => {
       return;
     }
 
-    // 수정중인지, 추가하는 중인지 어떻게 알 수 있을까요?
-    // 1. 이해: 우리가 수정하는중인지 추가하는 중인지
-    // 우리가 이미 알고있는 것:
-    //   데이터가 들어있는 것: id를 갖고 있으면 수정중이다
-    // 2. 계획
-
-    // setId(id + 1);
     //TODO: setID 수정하기
     const objRoutine = {
       id: 1,

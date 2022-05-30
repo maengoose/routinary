@@ -72,4 +72,5 @@ export const RoutineList = styled.ul`
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%);
+  font-family: Noto;
 `

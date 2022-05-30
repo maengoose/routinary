@@ -42,6 +42,7 @@ export const TimeInput = styled.input`
   width: 200px;
   height: 30px;
   text-align: center;
+  font-family: Noto;
 `
 
 export const TextInput = styled.input`
@@ -54,6 +55,7 @@ export const TextInput = styled.input`
   width: 200px;
   height: 30px;
   text-align: center;
+  font-family: Noto;
 `
 
 export const RangeInput = styled.input`
@@ -98,6 +100,7 @@ export const AddButton = styled.input`
   width: 50px;
   height: 20px;
   text-align: center;
+  font-family: Lora;
 `
 
 export const DurationTimeFont = styled.label`

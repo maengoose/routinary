@@ -16,3 +16,8 @@ code {
   font-family: 'Lora';
   src: url('./styles/fonts/Lora.ttf');
 }
+
+@font-face {
+  font-family: Noto;
+  src: url('./styles/fonts/Noto.otf');
+}

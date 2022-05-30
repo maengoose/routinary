@@ -74,3 +74,16 @@ export const RoutineList = styled.ul`
   transform: translate(-50%, -50%);
   font-family: Noto;
 `
+
+export const DeleteButton = styled(Button)`
+  height: 30px;
+  width: 30px;
+  color: black;
+`
+
+export const EditButton = styled(Button)`
+  height: 30px;
+  width: 30px;
+  color: black;
+  left: 4%;
+`

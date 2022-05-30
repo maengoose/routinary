@@ -1,3 +1,5 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 
 import CreateRoutine from '../../components/CreateRoutine';
@@ -42,15 +44,10 @@ const DailyRoutine: React.FC = () => {
   }
 
   const handleAddRoutine = (routine: Routine) => {
-    console.log('routine: ', routine);
     setRoutines([...routines, routine]);
   }
 
   const handleEditRoutine = (routine: Routine) => {
-    // const index = routines
-    //   .findIndex(r => r.id === routine.id);
-
-    // setRoutines([...routines.slice(0, index), routine, ...routines.slice(index + 1)]);
     setRoutines(routines.map((it) => it.id === routine.id ? routine : it));
   }
 
@@ -80,12 +77,14 @@ const DailyRoutine: React.FC = () => {
           {routines.map(({ id, title, startTime, time }: Routine) => (
             <li key={id}>
               {startTime} Routine: {title}  {time}min
-              <button type='button' onClick={() => handleClickOpenEditModal(id)}>
-                Edit
-              </button>
-              <button type='button' onClick={() => handleDeleteRoutine(id)}>
-                Delete
-              </button>
+              <Styled.EditButton
+                startIcon={<EditIcon />}
+                onClick={() => handleClickOpenEditModal(id)}
+              />
+              <Styled.DeleteButton
+                startIcon={<DeleteIcon />}
+                onClick={() => handleDeleteRoutine(id)}
+              />
             </li>
           ))}
         </Styled.RoutineList>

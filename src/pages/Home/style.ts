@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import natureyoga from './images/natureyoga.jpg';
+import Clock from 'react-live-clock';
 
 export const BackgroundBox = styled(Box)`
   background-image: url(${natureyoga});
@@ -41,3 +42,11 @@ export const MeditationButton = styled(Button)`
   font-family: Lora;
 `
 
+export const LiveClock = styled(Clock)`
+  color: white;
+  font-size: 130px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`

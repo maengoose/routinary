@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -38,10 +38,13 @@ const CreateRoutine: React.FC<Props> = (props) => {
     setDuration(event.target.value);
   }
 
+  const nextId = useRef(0);
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
     if (!title || !time) {
-      return;
+      return alert('title/time을 입력해주세요');
     }
 
     if (id !== 0) {
@@ -51,18 +54,20 @@ const CreateRoutine: React.FC<Props> = (props) => {
         startTime: time,
         time: duration
       });
+      onClose();
       return;
     }
 
-    //TODO: setID 수정하기
     const objRoutine = {
-      id: 1,
+      id: nextId.current,
       title,
       startTime: time,
       time: duration
     };
-    onAddRoutine(objRoutine)
     setTitle('');
+    onAddRoutine(objRoutine);
+    nextId.current += 1;
+    onClose();
   }
 
   useEffect(() => {

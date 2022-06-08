@@ -67,6 +67,7 @@ const CreateRoutine: React.FC<Props> = (props) => {
       startTime: time,
       time: duration
     };
+
     setTitle('');
     onAddRoutine(objRoutine);
     nextId.current += 1;
@@ -79,8 +80,26 @@ const CreateRoutine: React.FC<Props> = (props) => {
       setId(props.routine.id);
       setTime(props.routine.startTime);
       setDuration(props.routine.time);
+    } else {
+      setTitle('');
+      setId(0);
+      setTime('');
+      setDuration('0');
     }
   }, [props.routine]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    if (!props.routine) {
+      setTitle('');
+      setId(0);
+      setTime('');
+      setDuration('0');
+    }
+  }, [open, props.routine])
 
   return (
     <Styled.ModalStyle

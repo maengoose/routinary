@@ -59,7 +59,7 @@ export const TextInput = styled.input`
 `
 
 export const RangeInput = styled.input`
-  background: #F9EBC8;
+  background: transparent;
   -webkit-appearance: none;
   margin: 5px;
   width: 180px;
@@ -91,7 +91,19 @@ export const CreateRoutineForm = styled.form`
   text-align: center;
 `
 
-export const AddButton = styled.input`
+export const AddButton = styled.button`
+  border: solid;
+  border-radius: 5px;
+  color: #5F7161;
+  background-color: #FEFBE7;
+  margin: 5px;
+  width: 50px;
+  height: 20px;
+  text-align: center;
+  font-family: Lora;
+`
+
+export const EditButton = styled.input`
   border: solid;
   border-radius: 5px;
   color: #5F7161;

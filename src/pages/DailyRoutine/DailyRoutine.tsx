@@ -20,6 +20,7 @@ const DailyRoutine: React.FC = () => {
 
 
   const handleOpen = () => {
+    setRoutine(undefined);
     setOpen(true);
   }
 
@@ -75,7 +76,8 @@ const DailyRoutine: React.FC = () => {
       ) :
         <Styled.RoutineList>
           {routines.map(({ id, title, startTime, time }: Routine) => (
-            <li key={id}>
+            <div key={id}>
+              <input type='checkbox' />
               {startTime} Routine: {title}  {time}min
               <Styled.EditButton
                 startIcon={<EditIcon />}
@@ -85,7 +87,7 @@ const DailyRoutine: React.FC = () => {
                 startIcon={<DeleteIcon />}
                 onClick={() => handleDeleteRoutine(id)}
               />
-            </li>
+            </div>
           ))}
         </Styled.RoutineList>
       }

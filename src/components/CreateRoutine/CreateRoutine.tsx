@@ -26,6 +26,9 @@ const CreateRoutine: React.FC<Props> = (props) => {
   const [duration, setDuration] = useState('0');
   const [id, setId] = useState(0);
 
+  // routine이 있으면 수정 없으면 추가
+  const isUpdating = props.routine !== undefined;
+
   const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setTitle(event.target.value);
   }
@@ -97,7 +100,9 @@ const CreateRoutine: React.FC<Props> = (props) => {
             <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration} />
             <Styled.DurationTimeFont htmlFor="duration">{duration}min</Styled.DurationTimeFont>
           </div>
-          <Styled.AddButton type="submit" value="add" />
+          <Styled.AddButton type="submit">
+            {isUpdating ? 'edit' : 'add'}
+          </Styled.AddButton>
         </Styled.CreateRoutineForm>
       </Styled.PopUp>
     </Styled.ModalStyle>

@@ -16,6 +16,12 @@ const useAudio = (url: string): [boolean, (playing: boolean) => void] => {
         audio.current.pause()
       }
     }
+
+    return () => {
+      if (audio.current) {
+        audio.current.pause()
+      }
+    }
   }, [playing]);
 
   return [playing, setPlaying];

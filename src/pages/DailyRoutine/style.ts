@@ -24,13 +24,6 @@ export const blinkTextCursor = keyframes`
 `
 
 export const TextAnime = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%);
-
   padding: 1em;
   font-family: 'Nanum Myeongjo', serif;
   margin: 0 auto; 
@@ -44,10 +37,6 @@ export const TextAnime = styled.div`
 `
 
 export const CreateDailyRoutine = styled(Button)`
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: inherit;
   &:hover {
     color: #6D8B74;
@@ -66,12 +55,10 @@ export const EmptyText = styled.p`
 `
 
 export const RoutineList = styled.ul`
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
   font-family: Noto;
 `
 

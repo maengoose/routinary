@@ -18,7 +18,6 @@ const DailyRoutine: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [routines, setRoutines] = useState<Routine[]>([]);
 
-
   const handleOpen = () => {
     setRoutine(undefined);
     setOpen(true);
@@ -58,12 +57,14 @@ const DailyRoutine: React.FC = () => {
         Make your routine
       </Styled.TextAnime>
 
-      <Styled.CreateDailyRoutine
-        variant='outlined'
-        onClick={handleOpen}
-      >
-        create routine
-      </Styled.CreateDailyRoutine>
+      <div style={{ textAlign: 'center' }}>
+        <Styled.CreateDailyRoutine
+          variant='outlined'
+          onClick={handleOpen}
+        >
+          create routine
+        </Styled.CreateDailyRoutine>
+      </div>
       <CreateRoutine
         routine={routine}
         open={open}
@@ -73,7 +74,7 @@ const DailyRoutine: React.FC = () => {
       />
       {routines.length === 0 ? (
         <Styled.EmptyText> Add your routine </Styled.EmptyText>
-      ) :
+      ) : (
         <Styled.RoutineList>
           {routines.map(({ id, title, startTime, time }: Routine) => (
             <div key={id}>
@@ -90,7 +91,7 @@ const DailyRoutine: React.FC = () => {
             </div>
           ))}
         </Styled.RoutineList>
-      }
+      )}
     </div>
   )
 }

@@ -16,7 +16,8 @@ type Routine = {
 const DailyRoutine: React.FC = () => {
   const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
-  const [routines, setRoutines] = useState<Routine[]>([]);
+  const storage = sessionStorage.getItem('routines') || '[]';
+  const [routines, setRoutines] = useState<Routine[]>(JSON.parse(storage));
 
   const handleOpen = () => {
     setRoutine(undefined);
@@ -44,7 +45,9 @@ const DailyRoutine: React.FC = () => {
   }
 
   const handleAddRoutine = (routine: Routine) => {
-    setRoutines([...routines, routine]);
+    const newRoutines = [...routines, routine];
+    setRoutines(newRoutines);
+    sessionStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
   const handleEditRoutine = (routine: Routine) => {
@@ -79,7 +82,7 @@ const DailyRoutine: React.FC = () => {
           {routines.map(({ id, title, startTime, time }: Routine) => (
             <div key={id}>
               <input type='checkbox' />
-              {startTime} Routine: {title}  {time}min
+              {startTime} ☀️ {title}  {time}min
               <Styled.EditButton
                 startIcon={<EditIcon />}
                 onClick={() => handleClickOpenEditModal(id)}

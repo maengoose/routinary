@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Routine } from '../../pages/DailyRoutines/DailyRoutines';
 
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -12,16 +13,10 @@ type Props = {
   onEditRoutine: (routine: Routine) => void;
 };
 
-type Routine = {
-  id: number;
-  title: string;
-  startTime: string;
-  time: string;
-}
-
 const CreateRoutine: React.FC<Props> = (props) => {
   const { open, onClose, onAddRoutine, onEditRoutine } = props;
-  const [title, setTitle] = useState('');
+  // TODO: 상태값 하나로 합치기
+  const [title, setTitle] = useState(props.routine?.title || '');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('0');
   const [id, setId] = useState(0);
@@ -50,12 +45,13 @@ const CreateRoutine: React.FC<Props> = (props) => {
       return alert('title/time을 입력해주세요');
     }
 
-    if (id !== 0) {
+    if (id !== 0 && props.routine) {
       onEditRoutine({
         id,
         title,
         startTime: time,
-        time: duration
+        time: duration,
+        completed: props.routine.completed
       });
       onClose();
       return;
@@ -65,7 +61,8 @@ const CreateRoutine: React.FC<Props> = (props) => {
       id: nextId.current,
       title,
       startTime: time,
-      time: duration
+      time: duration,
+      completed: false
     };
 
     setTitle('');
@@ -80,11 +77,6 @@ const CreateRoutine: React.FC<Props> = (props) => {
       setId(props.routine.id);
       setTime(props.routine.startTime);
       setDuration(props.routine.time);
-    } else {
-      setTitle('');
-      setId(0);
-      setTime('');
-      setDuration('0');
     }
   }, [props.routine]);
 

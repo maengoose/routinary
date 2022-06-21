@@ -1,22 +1,22 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import CreateRoutine from '../../components/CreateRoutine';
+import DailyRoutine from '../../components/DailyRoutine';
 
 import * as Styled from './style';
 
-type Routine = {
+export type Routine = {
   id: number;
   title: string;
   startTime: string;
   time: string;
+  completed: boolean;
 }
 
-const DailyRoutine: React.FC = () => {
+const DailyRoutines: React.FC = () => {
   const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
-  const storage = sessionStorage.getItem('routines') || '[]';
+  const storage = localStorage.getItem('routines') || '[]';
   const [routines, setRoutines] = useState<Routine[]>(JSON.parse(storage));
 
   const handleOpen = () => {
@@ -28,12 +28,12 @@ const DailyRoutine: React.FC = () => {
     setOpen(false);
   }
 
-  const handleDeleteRoutine = (id: number) => {
+  const handleDeleteRoutine = useCallback((id: number) => {
     const newRoutines = routines.filter(routine => routine.id !== id);
     setRoutines(newRoutines);
-  }
+  }, [routines]);
 
-  const handleClickOpenEditModal = (id: number) => {
+  const handleClickOpenEditModal = useCallback((id: number) => {
     const routine = routines.find((it) => it.id === id);
     if (!routine) {
       return;
@@ -42,7 +42,7 @@ const DailyRoutine: React.FC = () => {
     setRoutine(routine);
     setOpen(true);
     // 모달을 연다.
-  }
+  }, [routines]);
 
   const handleAddRoutine = (routine: Routine) => {
     const newRoutines = [...routines, routine];
@@ -52,6 +52,10 @@ const DailyRoutine: React.FC = () => {
 
   const handleEditRoutine = (routine: Routine) => {
     setRoutines(routines.map((it) => it.id === routine.id ? routine : it));
+  }
+
+  const handleUpdateRoutineStatus = (id: number) => {
+    setRoutines(routines.map((routine) => routine.id === id ? { ...routine, completed: !routine.completed } : routine));
   }
 
   return (
@@ -79,19 +83,14 @@ const DailyRoutine: React.FC = () => {
         <Styled.EmptyText> Add your routine </Styled.EmptyText>
       ) : (
         <Styled.RoutineList>
-          {routines.map(({ id, title, startTime, time }: Routine) => (
-            <div key={id}>
-              <input type='checkbox' />
-              {startTime} ☀️ {title}  {time}min
-              <Styled.EditButton
-                startIcon={<EditIcon />}
-                onClick={() => handleClickOpenEditModal(id)}
-              />
-              <Styled.DeleteButton
-                startIcon={<DeleteIcon />}
-                onClick={() => handleDeleteRoutine(id)}
-              />
-            </div>
+          {routines.map((routine: Routine) => (
+            <DailyRoutine
+              key={routine.id}
+              routine={routine}
+              onDeleteRoutine={handleDeleteRoutine}
+              onClickOpenEditModal={handleClickOpenEditModal}
+              onUpdateRoutineStatus={handleUpdateRoutineStatus}
+            />
           ))}
         </Styled.RoutineList>
       )}
@@ -99,4 +98,4 @@ const DailyRoutine: React.FC = () => {
   )
 }
 
-export default DailyRoutine;
+export default DailyRoutines;

@@ -61,16 +61,3 @@ export const RoutineList = styled.ul`
   margin-top: 24px;
   font-family: Noto;
 `
-
-export const DeleteButton = styled(Button)`
-  height: 30px;
-  width: 30px;
-  color: black;
-`
-
-export const EditButton = styled(Button)`
-  height: 30px;
-  width: 30px;
-  color: black;
-  left: 4%;
-`

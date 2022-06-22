@@ -16,7 +16,7 @@ export type Routine = {
 const DailyRoutines: React.FC = () => {
   const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
-  const storage = sessionStorage.getItem('routines') || '[]';
+  const storage = localStorage.getItem('routines') || '[]';
   const [routines, setRoutines] = useState<Routine[]>(JSON.parse(storage));
 
   const handleOpen = () => {
@@ -46,7 +46,7 @@ const DailyRoutines: React.FC = () => {
   const handleAddRoutine = (routine: Routine) => {
     const newRoutines = [...routines, routine];
     setRoutines(newRoutines);
-    sessionStorage.setItem('routines', JSON.stringify(newRoutines));
+    localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
   const handleEditRoutine = (routine: Routine) => {

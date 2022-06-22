@@ -31,6 +31,7 @@ const DailyRoutines: React.FC = () => {
   const handleDeleteRoutine = useCallback((id: number) => {
     const newRoutines = routines.filter(routine => routine.id !== id);
     setRoutines(newRoutines);
+    localStorage.setItem('routines', JSON.stringify(newRoutines));
   }, [routines]);
 
   const handleClickOpenEditModal = useCallback((id: number) => {

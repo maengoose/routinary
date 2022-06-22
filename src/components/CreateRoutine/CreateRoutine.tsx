@@ -21,7 +21,6 @@ const CreateRoutine: React.FC<Props> = (props) => {
   const [duration, setDuration] = useState('0');
   const [id, setId] = useState(0);
 
-  // routine이 있으면 수정 없으면 추가
   const isUpdating = props.routine !== undefined;
 
   const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {

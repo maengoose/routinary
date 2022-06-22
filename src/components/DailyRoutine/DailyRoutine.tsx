@@ -13,8 +13,8 @@ type Props = {
 }
 
 const DailyRoutine: React.FC<Props> = ({ routine, onDeleteRoutine, onClickOpenEditModal, onUpdateRoutineStatus }) => {
-  const {id, startTime, title, time, completed} = routine;
-  
+  const { id, startTime, title, time, completed } = routine;
+
   const handleClickOpenEditModal = () => {
     onClickOpenEditModal(id);
   }
@@ -24,18 +24,12 @@ const DailyRoutine: React.FC<Props> = ({ routine, onDeleteRoutine, onClickOpenEd
   }
 
   const handleChangeCheckbox: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-
     onUpdateRoutineStatus(id);
-    if (event.target.checked) {
-      console.log('checked::: ');
-    } else {
-      console.log('unchecked::: ');
-    }
   }
 
   return (
     <Styled.RoutineItem>
-      <input type='checkbox' onChange={handleChangeCheckbox} defaultChecked={completed}/>
+      <input type='checkbox' onChange={handleChangeCheckbox} defaultChecked={completed} />
       <Styled.RoutineInfo isChecked={completed}>{startTime} ☀️ {title} {time}min</Styled.RoutineInfo>
       <Styled.EditButton
         startIcon={<EditIcon />}

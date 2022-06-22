@@ -41,7 +41,6 @@ const DailyRoutines: React.FC = () => {
 
     setRoutine(routine);
     setOpen(true);
-    // 모달을 연다.
   }, [routines]);
 
   const handleAddRoutine = (routine: Routine) => {

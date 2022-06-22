@@ -51,7 +51,9 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleEditRoutine = (routine: Routine) => {
-    setRoutines(routines.map((it) => it.id === routine.id ? routine : it));
+    const newRoutines = routines.map((it) => it.id === routine.id ? routine : it);
+    setRoutines(newRoutines);
+    localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
   const handleUpdateRoutineStatus = (id: number) => {

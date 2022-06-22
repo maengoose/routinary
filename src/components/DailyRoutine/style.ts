@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 
 export const RoutineItem = styled.div`
   display: flex;
-  justify-content: center;
 `
 
 export const RoutineInfo = styled.p<{ isChecked?: boolean; }>`

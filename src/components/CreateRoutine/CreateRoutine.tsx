@@ -19,7 +19,7 @@ const CreateRoutine: React.FC<Props> = (props) => {
   // TODO: 상태값 하나로 합치기
   const [title, setTitle] = useState(props.routine?.title || '');
   const [time, setTime] = useState('');
-  const [duration, setDuration] = useState('0');
+  const [duration, setDuration] = useState('5');
   const [id, setId] = useState(nextId || 0);
 
   const isUpdating = props.routine !== undefined;

@@ -97,11 +97,11 @@ const DailyRoutines: React.FC = () => {
               onUpdateRoutineStatus={handleUpdateRoutineStatus}
             />
           ))}
-          </Styled.RoutineList>
+        </Styled.RoutineList>
       )}
-      <p>
+      <Styled.RoutineAward>
         ✔︎ You completed routines
-      </p>
+      </Styled.RoutineAward>
     </div>
   )
 }

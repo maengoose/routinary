@@ -100,7 +100,7 @@ const DailyRoutines: React.FC = () => {
           </Styled.RoutineList>
       )}
       <p>
-        Tou 
+        ✔︎ You completed routines
       </p>
     </div>
   )

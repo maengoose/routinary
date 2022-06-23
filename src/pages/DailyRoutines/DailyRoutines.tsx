@@ -18,6 +18,7 @@ const DailyRoutines: React.FC = () => {
   const [open, setOpen] = useState(false);
   const storage = localStorage.getItem('routines') || '[]';
   const [routines, setRoutines] = useState<Routine[]>(JSON.parse(storage));
+  const [nextId, setNextId] = useState(routines[routines.length - 1]?.id + 1 || 1);
 
   const handleOpen = () => {
     setRoutine(undefined);
@@ -48,6 +49,7 @@ const DailyRoutines: React.FC = () => {
     const newRoutines = [...routines, routine];
     setRoutines(newRoutines);
     localStorage.setItem('routines', JSON.stringify(newRoutines));
+    setNextId(routine.id + 1);
   }
 
   const handleEditRoutine = (routine: Routine) => {
@@ -74,13 +76,14 @@ const DailyRoutines: React.FC = () => {
           create routine
         </Styled.CreateDailyRoutine>
       </div>
-      <CreateRoutine
+      {open && <CreateRoutine
         routine={routine}
         open={open}
+        nextId={nextId}
         onClose={handleClose}
         onAddRoutine={handleAddRoutine}
         onEditRoutine={handleEditRoutine}
-      />
+      />}
       {routines.length === 0 ? (
         <Styled.EmptyText> Add your routine </Styled.EmptyText>
       ) : (

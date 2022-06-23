@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routine } from '../../pages/DailyRoutines/DailyRoutines';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,20 +8,30 @@ import * as Styled from './style';
 type Props = {
   routine?: Routine;
   open: boolean;
+  nextId: number;
   onClose: () => void;
   onAddRoutine: (routine: Routine) => void;
   onEditRoutine: (routine: Routine) => void;
 };
 
 const CreateRoutine: React.FC<Props> = (props) => {
-  const { open, onClose, onAddRoutine, onEditRoutine } = props;
+  const { open, onClose, onAddRoutine, onEditRoutine, nextId } = props;
   // TODO: 상태값 하나로 합치기
   const [title, setTitle] = useState(props.routine?.title || '');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('0');
-  const [id, setId] = useState(0);
+  const [id, setId] = useState(nextId || 0);
 
   const isUpdating = props.routine !== undefined;
+
+  useEffect(() => {
+    if (props.routine) {
+      setTitle(props.routine.title);
+      setId(props.routine.id);
+      setTime(props.routine.startTime);
+      setDuration(props.routine.time);
+    }
+  }, [props.routine]);
 
   const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setTitle(event.target.value);
@@ -35,8 +45,6 @@ const CreateRoutine: React.FC<Props> = (props) => {
     setDuration(event.target.value);
   }
 
-  const nextId = useRef(0);
-
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
@@ -44,7 +52,7 @@ const CreateRoutine: React.FC<Props> = (props) => {
       return alert('title/time을 입력해주세요');
     }
 
-    if (id !== 0 && props.routine) {
+    if (props.routine) {
       onEditRoutine({
         id,
         title,
@@ -56,41 +64,16 @@ const CreateRoutine: React.FC<Props> = (props) => {
       return;
     }
 
-    const objRoutine = {
-      id: nextId.current,
+    onAddRoutine({
+      id,
       title,
       startTime: time,
       time: duration,
       completed: false
-    };
+    });
 
-    setTitle('');
-    onAddRoutine(objRoutine);
-    nextId.current += 1;
     onClose();
   }
-
-  useEffect(() => {
-    if (props.routine) {
-      setTitle(props.routine.title);
-      setId(props.routine.id);
-      setTime(props.routine.startTime);
-      setDuration(props.routine.time);
-    }
-  }, [props.routine]);
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    if (!props.routine) {
-      setTitle('');
-      setId(0);
-      setTime('');
-      setDuration('0');
-    }
-  }, [open, props.routine])
 
   return (
     <Styled.ModalStyle

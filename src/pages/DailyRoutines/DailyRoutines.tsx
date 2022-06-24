@@ -62,6 +62,11 @@ const DailyRoutines: React.FC = () => {
     setRoutines(routines.map((routine) => routine.id === id ? { ...routine, completed: !routine.completed } : routine));
   }
 
+  const countCompletedRoutines = () => {
+    const countRoutines = routines.filter(routine => routine.completed === true);
+    return countRoutines.length;
+  }
+
   return (
     <div>
       <Styled.TextAnime>
@@ -100,7 +105,7 @@ const DailyRoutines: React.FC = () => {
         </Styled.RoutineList>
       )}
       <Styled.RoutineAward>
-        ✔︎ You completed routines
+        {`✔︎ You completed ${countCompletedRoutines()} routines`}
       </Styled.RoutineAward>
     </div>
   )

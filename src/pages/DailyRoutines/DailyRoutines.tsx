@@ -105,7 +105,7 @@ const DailyRoutines: React.FC = () => {
         </Styled.RoutineList>
       )}
       <Styled.RoutineAward>
-        {`✔︎ You completed ${countCompletedRoutines()} routines`}
+        {`✔︎  You completed ${countCompletedRoutines()} routines`}
       </Styled.RoutineAward>
     </div>
   )

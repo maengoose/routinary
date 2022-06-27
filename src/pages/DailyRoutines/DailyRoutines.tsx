@@ -64,12 +64,6 @@ const DailyRoutines: React.FC = () => {
     localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
-  // const countCompletedRoutines = () => {
-  //   const countRoutines = routines.filter(routine => routine.completed === true);
-  //   return countRoutines.length;
-  // }
-
-  // TODO: useMemo?
   const countCompletedRoutines = useMemo(() => {
     const countRoutines = routines.filter(routine => routine.completed === true);
     return countRoutines.length;

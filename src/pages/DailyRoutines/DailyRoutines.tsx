@@ -13,6 +13,18 @@ export type Routine = {
   completed: boolean;
 }
 
+const insertionSort = (arr: any[]) => {
+  for (let i = 1; i < arr.length; i++) {
+    let currentValue = arr[i];
+    let j = i - 1;
+    for (; j >= 0 && currentValue.startTime < arr[j].startTime; j--) {
+      arr[j + 1] = arr[j]
+    }
+    arr[j + 1] = currentValue
+  }
+  return arr
+};
+
 const DailyRoutines: React.FC = () => {
   const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
@@ -95,7 +107,7 @@ const DailyRoutines: React.FC = () => {
         <Styled.EmptyText> Add your routine </Styled.EmptyText>
       ) : (
         <Styled.RoutineList>
-          {routines.map((routine: Routine) => (
+          {insertionSort(routines).map((routine: Routine) => (
             <DailyRoutine
               key={routine.id}
               routine={routine}

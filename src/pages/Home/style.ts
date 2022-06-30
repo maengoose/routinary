@@ -49,4 +49,5 @@ export const LiveClock = styled(Clock)`
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-weight: lighter;
 `

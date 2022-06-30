@@ -13,7 +13,7 @@ export type Routine = {
   completed: boolean;
 }
 
-const insertionSort = (arr: any[]) => {
+const insertionSort = (arr: Routine[]) => {
   for (let i = 1; i < arr.length; i++) {
     let currentValue = arr[i];
     let j = i - 1;

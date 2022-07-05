@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 import CreateRoutine from '../../components/CreateRoutine';
 import DailyRoutine from '../../components/DailyRoutine';
@@ -59,13 +59,15 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleUpdateRoutineStatus = (id: number) => {
-    setRoutines(routines.map((routine) => routine.id === id ? { ...routine, completed: !routine.completed } : routine));
+    const newRoutines = routines.map((routine) => routine.id === id ? { ...routine, completed: !routine.completed } : routine);
+    setRoutines(newRoutines);
+    localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
-  const countCompletedRoutines = () => {
+  const countCompletedRoutines = useMemo(() => {
     const countRoutines = routines.filter(routine => routine.completed === true);
     return countRoutines.length;
-  }
+  }, [routines])
 
   return (
     <div>
@@ -105,7 +107,7 @@ const DailyRoutines: React.FC = () => {
         </Styled.RoutineList>
       )}
       <Styled.RoutineAward>
-        {`✔︎  You completed ${countCompletedRoutines()} routines`}
+        {`✔︎  You completed ${countCompletedRoutines} routines`}
       </Styled.RoutineAward>
     </div>
   )

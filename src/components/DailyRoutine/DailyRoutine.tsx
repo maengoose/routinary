@@ -42,14 +42,16 @@ const DailyRoutine: React.FC<Props> = ({ routine, onDeleteRoutine, onClickOpenEd
           {startTime} 🌚 {title} {time}min
         </Styled.RoutineInfo>
       }
-      <Styled.EditButton
-        startIcon={<EditIcon />}
-        onClick={handleClickOpenEditModal}
-      />
-      <Styled.DeleteButton
-        startIcon={<DeleteIcon />}
-        onClick={handleDeleteRoutine}
-      />
+      <div>
+        <Styled.EditButton
+          startIcon={<EditIcon />}
+          onClick={handleClickOpenEditModal}
+        />
+        <Styled.DeleteButton
+          startIcon={<DeleteIcon />}
+          onClick={handleDeleteRoutine}
+        />
+      </div>
     </Styled.RoutineItem>
   );
 };

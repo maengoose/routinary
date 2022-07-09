@@ -34,7 +34,9 @@ const DailyRoutine: React.FC<Props> = ({ routine, onDeleteRoutine, onClickOpenEd
     <Styled.RoutineItem>
       <input type='checkbox' onChange={handleChangeCheckbox} defaultChecked={completed} />
       <Styled.RoutineInfo isChecked={completed}>
-        {startTime} {(startTime >= SUNRISE && startTime <= SUNSET) ? '🌞' : '🌚'} {title} {time}min
+        <p>{startTime} {(startTime >= SUNRISE && startTime <= SUNSET) ? '🌞' : '🌚'}</p>
+        <p>{title}</p>
+        <p>{time}min</p>
       </Styled.RoutineInfo>
       <div>
         <Styled.EditButton

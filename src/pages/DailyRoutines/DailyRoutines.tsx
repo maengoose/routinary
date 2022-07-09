@@ -113,15 +113,6 @@ const DailyRoutines: React.FC = () => {
     }
   }
 
-  // .filter(isOvertime)
-  // .map(() => {
-  //   completed: false,
-  //     lastCheckedTime: today
-  // });
-
-  // updateStore(newRoutines)
-  // updateLocalStorage(newRoutines)
-
   return (
     <div>
       <Styled.TextAnime>

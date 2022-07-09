@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 
 import CreateRoutine from '../../components/CreateRoutine';
 import DailyRoutine from '../../components/DailyRoutine';
@@ -11,6 +11,7 @@ export type Routine = {
   startTime: string;
   time: string;
   completed: boolean;
+  completedTime: Date | null;
 }
 
 const insertionSort = (arr: Routine[]) => {
@@ -31,6 +32,22 @@ const DailyRoutines: React.FC = () => {
   const storage = localStorage.getItem('routines') || '[]';
   const [routines, setRoutines] = useState<Routine[]>(JSON.parse(storage));
   const [nextId, setNextId] = useState(routines[routines.length - 1]?.id + 1 || 1);
+
+  useEffect(() => {
+    // 최초 랜더링시에 현재 루틴들 중에 체크된놈의 completedTime이 isOverTime 이면, routines initiating!
+    const checkedRoutine = routines.find(routine => routine.completed);
+    if (checkedRoutine && isOverTime(checkedRoutine)) {
+      initRoutines();
+    }
+  }, []);
+
+  const initRoutines = () => {
+    const newRoutines = routines.map(routine => {
+      return routine.completed ? { ...routine, completed: false } : routine
+    });
+    setRoutines(newRoutines);
+    localStorage.setItem('routines', JSON.stringify(newRoutines));
+  }
 
   const handleOpen = () => {
     setRoutine(undefined);
@@ -71,7 +88,11 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleUpdateRoutineStatus = (id: number) => {
-    const newRoutines = routines.map((routine) => routine.id === id ? { ...routine, completed: !routine.completed } : routine);
+    const newRoutines = routines.map((routine) => {
+      return routine.id === id ? (
+        { ...routine, completed: !routine.completed, completedTime: routine.completed ? routine.completedTime : new Date() }
+      ) : routine
+    });
     setRoutines(newRoutines);
     localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
@@ -80,6 +101,26 @@ const DailyRoutines: React.FC = () => {
     const countRoutines = routines.filter(routine => routine.completed === true);
     return countRoutines.length;
   }, [routines])
+
+  const isOverTime = (routine: Routine) => {
+    if (routine.completed && routine.completedTime) {
+      const completedTimeKST = new Date(routine.completedTime);
+      const completedDateKST = completedTimeKST.getDate();
+      const nowKST = new Date();
+      const nowDate = nowKST.getDate();
+      const difference = completedDateKST - nowDate;
+      return difference >= 1;
+    }
+  }
+
+  // .filter(isOvertime)
+  // .map(() => {
+  //   completed: false,
+  //     lastCheckedTime: today
+  // });
+
+  // updateStore(newRoutines)
+  // updateLocalStorage(newRoutines)
 
   return (
     <div>

@@ -15,23 +15,23 @@ type Props = {
 };
 
 const CreateRoutine: React.FC<Props> = (props) => {
-  const { open, onClose, onAddRoutine, onEditRoutine, nextId } = props;
+  const { open, onClose, onAddRoutine, onEditRoutine, nextId, routine } = props;
   // TODO: 상태값 하나로 합치기
-  const [title, setTitle] = useState(props.routine?.title || '');
+  const [title, setTitle] = useState(routine?.title || '');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState('5');
   const [id, setId] = useState(nextId || 0);
 
-  const isUpdating = props.routine !== undefined;
+  const isUpdating = routine !== undefined;
 
   useEffect(() => {
-    if (props.routine) {
-      setTitle(props.routine.title);
-      setId(props.routine.id);
-      setTime(props.routine.startTime);
-      setDuration(props.routine.time);
+    if (routine) {
+      setTitle(routine.title);
+      setId(routine.id);
+      setTime(routine.startTime);
+      setDuration(routine.time);
     }
-  }, [props.routine]);
+  }, [routine]);
 
   const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setTitle(event.target.value);
@@ -52,13 +52,14 @@ const CreateRoutine: React.FC<Props> = (props) => {
       return alert('title/time을 입력해주세요');
     }
 
-    if (props.routine) {
+    if (routine) {
       onEditRoutine({
         id,
         title,
         startTime: time,
         time: duration,
-        completed: props.routine.completed
+        completed: routine.completed,
+        completedTime: routine.completedTime
       });
       onClose();
       return;
@@ -69,7 +70,8 @@ const CreateRoutine: React.FC<Props> = (props) => {
       title,
       startTime: time,
       time: duration,
-      completed: false
+      completed: false,
+      completedTime: null
     });
 
     onClose();

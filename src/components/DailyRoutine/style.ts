@@ -3,10 +3,15 @@ import Button from '@mui/material/Button';
 
 export const RoutineItem = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const RoutineInfo = styled.p<{ isChecked?: boolean; }>`
+  display: flex;
   margin: 0;
+  width: 400px;
+  justify-content: space-between;
 
   ${props => props.isChecked && css`
     text-decoration-line: line-through;

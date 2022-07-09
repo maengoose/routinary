@@ -60,4 +60,9 @@ export const RoutineList = styled.ul`
   margin-right: auto;
   margin-top: 24px;
   font-family: Noto;
+  width: fit-content;
+`
+export const RoutineAward = styled.p`
+  font-family: Lora;
+  text-align: center;
 `

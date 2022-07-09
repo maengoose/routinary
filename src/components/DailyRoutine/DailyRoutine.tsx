@@ -12,6 +12,9 @@ type Props = {
   onUpdateRoutineStatus: (id: number) => void;
 }
 
+const SUNRISE = '05:00';
+const SUNSET = '19:00';
+
 const DailyRoutine: React.FC<Props> = ({ routine, onDeleteRoutine, onClickOpenEditModal, onUpdateRoutineStatus }) => {
   const { id, startTime, title, time, completed } = routine;
 
@@ -30,15 +33,21 @@ const DailyRoutine: React.FC<Props> = ({ routine, onDeleteRoutine, onClickOpenEd
   return (
     <Styled.RoutineItem>
       <input type='checkbox' onChange={handleChangeCheckbox} defaultChecked={completed} />
-      <Styled.RoutineInfo isChecked={completed}>{startTime} ☀️ {title} {time}min</Styled.RoutineInfo>
-      <Styled.EditButton
-        startIcon={<EditIcon />}
-        onClick={handleClickOpenEditModal}
-      />
-      <Styled.DeleteButton
-        startIcon={<DeleteIcon />}
-        onClick={handleDeleteRoutine}
-      />
+      <Styled.RoutineInfo isChecked={completed}>
+        <p>{startTime} {(startTime >= SUNRISE && startTime <= SUNSET) ? '🌞' : '🌚'}</p>
+        <p>{title}</p>
+        <p>{time}min</p>
+      </Styled.RoutineInfo>
+      <div>
+        <Styled.EditButton
+          startIcon={<EditIcon />}
+          onClick={handleClickOpenEditModal}
+        />
+        <Styled.DeleteButton
+          startIcon={<DeleteIcon />}
+          onClick={handleDeleteRoutine}
+        />
+      </div>
     </Styled.RoutineItem>
   );
 };

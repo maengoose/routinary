@@ -1,5 +1,7 @@
 import Music from '../../components/Music';
 
+import * as Styled from './style';
+
 import Rain from './WhiteNoise/Rain.mp3';
 import rainImage from './images/rain.jpg';
 import rainyGif from './images/rainy.gif';
@@ -32,11 +34,11 @@ const MusicList: React.FC = () => {
     }
   ];
   return (
-    <div>
+    <Styled.MusicList>
       {musicList.map(music => (
         <Music key={music.name} musicUrl={music.musicUrl} name={music.name} image={music.image} gif={music.gif} />
       ))}
-    </div>
+    </Styled.MusicList>
   )
 };
 

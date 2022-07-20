@@ -6,6 +6,18 @@ import Rain from './WhiteNoise/Rain.mp3';
 import rainImage from './images/rain.jpg';
 import rainyGif from './images/rainy.gif';
 
+import Bonfire from './WhiteNoise/Bonfire.mp3';
+import bonfireImage from './images/bonfire.jpg';
+import bonfireGif from './images/bonfire.gif';
+
+import forest from './WhiteNoise/forest.mp3';
+import forestImage from './images/forest.jpg';
+import forestGif from './images/forest.gif';
+
+import Waves from './WhiteNoise/Waves.mp3';
+import wavesImage from './images/wave.jpg';
+import wavesGif from './images/wave.gif';
+
 const MusicList: React.FC = () => {
   const musicList = [
     {
@@ -15,22 +27,22 @@ const MusicList: React.FC = () => {
       gif: rainyGif
     },
     {
-      musicUrl: Rain,
+      musicUrl: Bonfire,
       name: 'Bonfire',
-      image: rainImage,
-      gif: rainyGif
+      image: bonfireImage,
+      gif: bonfireGif
     },
     {
-      musicUrl: Rain,
+      musicUrl: Waves,
       name: 'Wave',
-      image: rainImage,
-      gif: rainyGif
+      image: wavesImage,
+      gif: wavesGif
     },
     {
-      musicUrl: Rain,
+      musicUrl: forest,
       name: 'Forest',
-      image: rainImage,
-      gif: rainyGif
+      image: forestImage,
+      gif: forestGif
     }
   ];
   return (

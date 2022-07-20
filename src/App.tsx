@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from './pages/Home';
 import DailyRoutines from './pages/DailyRoutines';
-import Music from './pages/Music/Music';
+import MusicList from './pages/MusicList/MusicList';
 import SideBar from "./SideBar";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/routine" element={<DailyRoutines />} />
-        <Route path="/music" element={<Music />} />
+        <Route path="/music" element={<MusicList />} />
       </Routes>
     </Router>
   );

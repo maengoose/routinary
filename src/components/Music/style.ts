@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
-export const MusicButton = styled(Button) < { playing: boolean; image: string; gif: string }>`
+export const MusicButton = styled(Button) < { playing: string; image: string; gif: string }>`
     top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -14,9 +14,9 @@ export const MusicButton = styled(Button) < { playing: boolean; image: string; g
     backgroundSize: cover;
     background-image: url(${props => props.image});
     font-family: Lora;
-    color: black;
+    color: black; 
 
-    ${props => props.playing && `
+    ${props => props.playing === 'true' && `
         background-image: url(${props.gif});
     `}
 `

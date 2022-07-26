@@ -2,44 +2,40 @@ import Music from '../../components/Music';
 
 import * as Styled from './style';
 
-import Rain from './WhiteNoise/Rain.mp3';
 import rainImage from './images/rain.jpg';
 import rainyGif from './images/rainy.gif';
 
-import Bonfire from './WhiteNoise/Bonfire.mp3';
 import bonfireImage from './images/bonfire.jpg';
 import bonfireGif from './images/bonfire.gif';
 
-import forest from './WhiteNoise/forest.mp3';
 import forestImage from './images/forest.jpg';
 import forestGif from './images/forest.gif';
 
-import Waves from './WhiteNoise/Waves.mp3';
 import wavesImage from './images/wave.jpg';
 import wavesGif from './images/wave.gif';
 
 const MusicList: React.FC = () => {
   const musicList = [
     {
-      musicUrl: Rain,
+      musicUrl: '/Rain.mp3',
       name: 'Rain',
       image: rainImage,
       gif: rainyGif
     },
     {
-      musicUrl: Bonfire,
+      musicUrl: '/Bonfire.mp3',
       name: 'Bonfire',
       image: bonfireImage,
       gif: bonfireGif
     },
     {
-      musicUrl: Waves,
+      musicUrl: '/Waves.mp3',
       name: 'Wave',
       image: wavesImage,
       gif: wavesGif
     },
     {
-      musicUrl: forest,
+      musicUrl: '/forest.mp3',
       name: 'Forest',
       image: forestImage,
       gif: forestGif

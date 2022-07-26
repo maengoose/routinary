@@ -14,7 +14,7 @@ const Music: React.FC<Props> = ({ musicUrl, name, image, gif }) => {
 
   return (
     <Styled.MusicButton
-      playing={playing}
+      playing={`${playing}`}
       onClick={togglePlaying}
       image={image}
       gif={gif}

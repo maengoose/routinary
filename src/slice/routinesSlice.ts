@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { useCallback } from 'react';
 // import type { PayloadAction } from '@reduxjs/toolkit'
 // import type { RootState } from '../store'
 import { Routine } from '../pages/DailyRoutines/DailyRoutines'
@@ -20,15 +21,15 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     addRoutine: (state, action: PayloadAction<Routine>) => {
-      const result = {
+      const routines = {
         ...state,
         routines: [...state.routines, { ...action.payload, id: state.id }],
         id: state.id + 1,
       };
 
-      localStorage.setItem('routines', JSON.stringify(result.routines));
+      localStorage.setItem('routines', JSON.stringify(routines.routines));
 
-      return result;
+      return routines;
     },
     setRoutines: (state, action: PayloadAction<string | null>) => {
       if (action.payload === null) {
@@ -42,13 +43,22 @@ const { reducer, actions } = createSlice({
         routines: originRoutines,
         id: originRoutines[originRoutines.length - 1].id + 1
       };
+    },
+    deleteRoutine: (state, action: PayloadAction<number>) => {
+      const newRoutines = state.routines.filter(routine => routine.id !== action.payload);
+      localStorage.setItem('routines', JSON.stringify(newRoutines));
+      return {
+        ...state,
+        routines: newRoutines
+      };
     }
   },
 })
 
 export const {
   addRoutine,
-  setRoutines
+  setRoutines,
+  deleteRoutine
 } = actions;
 
 export default reducer;

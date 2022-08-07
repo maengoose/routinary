@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import CreateRoutine from '../../components/CreateRoutine/CreateRoutine';
 import DailyRoutine from '../../components/DailyRoutine';
 import { useAppSelector } from '../../hooks';
-import { addRoutine, setRoutines } from '../../slice/routinesSlice';
+import { addRoutine, setRoutines, deleteRoutine } from '../../slice/routinesSlice';
 
 import * as Styled from './style';
 
@@ -65,10 +65,11 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleDeleteRoutine = useCallback((id: number) => {
+    dispatch(deleteRoutine(id));
     // const newRoutines = routines.filter(routine => routine.id !== id);
     // setRoutines(newRoutines);
     // localStorage.setItem('routines', JSON.stringify(newRoutines));
-  }, [routines]);
+  }, [dispatch]);
 
   const handleClickOpenEditModal = useCallback((id: number) => {
     // const routine = routines.find((it) => it.id === id);

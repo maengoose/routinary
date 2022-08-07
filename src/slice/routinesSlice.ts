@@ -10,10 +10,9 @@ interface RoutinesState {
 }
 
 // Define the initial state using that type
-const currentRoutines: Routine[] = JSON.parse(localStorage.getItem('routines') || '[]');
 const initialState: RoutinesState = {
-  routines: currentRoutines,
-  id: currentRoutines.length ? currentRoutines[currentRoutines.length - 1].id + 1 : 1,
+  routines: [],
+  id: 1,
 }
 
 const { reducer, actions } = createSlice({
@@ -36,9 +35,12 @@ const { reducer, actions } = createSlice({
         return state;
       }
 
+      const originRoutines = JSON.parse(action.payload);
+
       return {
         ...state,
-        routines: JSON.parse(action.payload),
+        routines: originRoutines,
+        id: originRoutines[originRoutines.length - 1].id + 1
       };
     }
   },

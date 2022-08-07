@@ -37,9 +37,6 @@ const DailyRoutines: React.FC = () => {
   const dispatch = useDispatch();
   const routines = useAppSelector((state) => state.routines.routines);
 
-  // const [routines, setRoutines] = useState<Routine[]>(JSON.parse(storage));
-  // const [nextId, setNextId] = useState(routines[routines.length - 1]?.id + 1 || 1);
-
   useEffect(() => {
     const checkedRoutine = routines.find(routine => routine.completed);
     if (checkedRoutine && isOverTime(checkedRoutine)) {
@@ -66,9 +63,6 @@ const DailyRoutines: React.FC = () => {
 
   const handleDeleteRoutine = useCallback((id: number) => {
     dispatch(deleteRoutine(id));
-    // const newRoutines = routines.filter(routine => routine.id !== id);
-    // setRoutines(newRoutines);
-    // localStorage.setItem('routines', JSON.stringify(newRoutines));
   }, [dispatch]);
 
   const handleClickOpenEditModal = useCallback((id: number) => {
@@ -83,7 +77,6 @@ const DailyRoutines: React.FC = () => {
 
   const handleAddRoutine = (routine: Routine) => {
     dispatch(addRoutine(routine));
-    // localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
   const handleEditRoutine = (routine: Routine) => {

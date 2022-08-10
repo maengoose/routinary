@@ -22,7 +22,7 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     addRoutine: (state, action: PayloadAction<Routine>) => {
-      const routines = {
+      const routines: RoutinesState = {
         ...state,
         routines: [...state.routines, { ...action.payload, id: state.id }],
         id: state.id + 1,
@@ -66,19 +66,22 @@ const { reducer, actions } = createSlice({
       if (!routine) {
         return state;
       }
-
       return {
         ...state,
         routine,
       }
+    },
+    editRoutine: (state, { payload: routine }: PayloadAction<Routine>) => {
+      const routines: Routine[] = state.routines
+        .map(i => (i.id === routine.id) ? routine : i);
+
+      localStorage.setItem('routines', JSON.stringify(routines));
+
+      return {
+        ...state,
+        routines: routines
+      };
     }
-    // editRoutine: (state, action: PayloadAction<number>) => {
-    //   const editedRoutines = state.routines.map(routine => routine.id === action.payload ? action : routine);
-    //   return {
-    //     ...state,
-    //     routines: editedRoutines
-    //   };
-    // }
   },
 })
 
@@ -87,8 +90,8 @@ export const {
   setRoutines,
   setRoutine,
   deleteRoutine,
-  clickOpenEditModal
-  // editRoutine
+  clickOpenEditModal,
+  editRoutine
 } = actions;
 
 export default reducer;

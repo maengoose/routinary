@@ -50,7 +50,7 @@ const CreateRoutine: React.FC<Props> = (props) => {
 
     if (routine) {
       onEditRoutine({
-        id: 1,
+        id: routine.id,
         title,
         startTime: time,
         time: duration,

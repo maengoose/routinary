@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import CreateRoutine from '../../components/CreateRoutine/CreateRoutine';
 import DailyRoutine from '../../components/DailyRoutine';
 import { useAppSelector } from '../../hooks';
-import { addRoutine, setRoutines, setRoutine, deleteRoutine, clickOpenEditModal } from '../../slice/routinesSlice';
+import { addRoutine, setRoutines, setRoutine, deleteRoutine, clickOpenEditModal, editRoutine } from '../../slice/routinesSlice';
 
 import * as Styled from './style';
 
@@ -79,10 +79,7 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleEditRoutine = (routine: Routine) => {
-    // dispatch(editRoutine(id));
-    // const newRoutines = routines.map((it) => it.id === routine.id ? routine : it);
-    // setRoutines(newRoutines);
-    // localStorage.setItem('routines', JSON.stringify(newRoutines));
+    dispatch(editRoutine(routine));
   }
 
   const handleUpdateRoutineStatus = (id: number) => {

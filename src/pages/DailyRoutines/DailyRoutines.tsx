@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import CreateRoutine from '../../components/CreateRoutine/CreateRoutine';
 import DailyRoutine from '../../components/DailyRoutine';
 import { useAppSelector } from '../../hooks';
-import { addRoutine, setRoutines, deleteRoutine } from '../../slice/routinesSlice';
+import { addRoutine, setRoutines, setRoutine, deleteRoutine, clickOpenEditModal } from '../../slice/routinesSlice';
 
 import * as Styled from './style';
 
@@ -30,12 +30,16 @@ const insertionSort = (arr: Routine[]) => {
 };
 
 const DailyRoutines: React.FC = () => {
-  const [routine, setRoutine] = useState<Routine>();
+  // const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
   const storage = localStorage.getItem('routines') || '[]';
 
   const dispatch = useDispatch();
-  const routines = useAppSelector((state) => state.routines.routines);
+  const { routines, routine } = useAppSelector((state) => state.routines);
+
+  useEffect(() => {
+    dispatch(setRoutines(localStorage.getItem('routines')));
+  }, []);
 
   useEffect(() => {
     const checkedRoutine = routines.find(routine => routine.completed);
@@ -53,7 +57,7 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleOpen = () => {
-    setRoutine(undefined);
+    // initializeRouine()
     setOpen(true);
   }
 
@@ -66,20 +70,16 @@ const DailyRoutines: React.FC = () => {
   }, [dispatch]);
 
   const handleClickOpenEditModal = useCallback((id: number) => {
-    // const routine = routines.find((it) => it.id === id);
-    // if (!routine) {
-    //   return;
-    // }
-
-    // setRoutine(routine);
-    // setOpen(true);
-  }, [routines]);
+    dispatch(clickOpenEditModal(id));
+    setOpen(true);
+  }, [dispatch]);
 
   const handleAddRoutine = (routine: Routine) => {
     dispatch(addRoutine(routine));
   }
 
   const handleEditRoutine = (routine: Routine) => {
+    // dispatch(editRoutine(id));
     // const newRoutines = routines.map((it) => it.id === routine.id ? routine : it);
     // setRoutines(newRoutines);
     // localStorage.setItem('routines', JSON.stringify(newRoutines));
@@ -95,10 +95,10 @@ const DailyRoutines: React.FC = () => {
     // localStorage.setItem('routines', JSON.stringify(newRoutines));
   }
 
-  const countCompletedRoutines = useMemo(() => {
-    const countRoutines = routines.filter(routine => routine.completed === true);
-    return countRoutines.length;
-  }, [routines])
+  const countCompletedRoutines = useMemo(() =>
+    routines.filter(routine => routine.completed).length,
+    [routines]
+  );
 
   const isOverTime = (routine: Routine) => {
     if (routine.completed && routine.completedTime) {
@@ -110,12 +110,6 @@ const DailyRoutines: React.FC = () => {
       return difference >= 1;
     }
   }
-
-  useEffect(() => {
-    // 로컬 스토리지에서 저장되 있는 routines를 가져온다.
-    // 상태를 업데이트 => view에 반영이 되니까
-    dispatch(setRoutines(localStorage.getItem('routines')));
-  }, []);
 
   return (
     <div>
@@ -131,13 +125,15 @@ const DailyRoutines: React.FC = () => {
           create routine
         </Styled.CreateDailyRoutine>
       </div>
-      {open && <CreateRoutine
-        routine={routine}
-        open={open}
-        onClose={handleClose}
-        onAddRoutine={handleAddRoutine}
-        onEditRoutine={handleEditRoutine}
-      />}
+      {open && (
+        <CreateRoutine
+          routine={routine}
+          open={open}
+          onClose={handleClose}
+          onAddRoutine={handleAddRoutine}
+          onEditRoutine={handleEditRoutine}
+        />
+      )}
       {routines.length === 0 ? (
         <Styled.EmptyText> Add your routine </Styled.EmptyText>
       ) : (

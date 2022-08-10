@@ -7,12 +7,14 @@ import { Routine } from '../pages/DailyRoutines/DailyRoutines'
 interface RoutinesState {
   id: number;
   routines: Routine[];
+  routine?: Routine;
 }
 
 // Define the initial state using that type
 const initialState: RoutinesState = {
-  routines: [],
   id: 1,
+  routines: [],
+  routine: undefined,
 }
 
 const { reducer, actions } = createSlice({
@@ -43,6 +45,14 @@ const { reducer, actions } = createSlice({
         id: originRoutines[originRoutines.length - 1].id + 1
       };
     },
+    setRoutine: (state, action: PayloadAction<Routine>) => {
+      if (action.payload === null) {
+        return state;
+      }
+      return {
+        ...state
+      };
+    },
     deleteRoutine: (state, action: PayloadAction<number>) => {
       const newRoutines = state.routines.filter(routine => routine.id !== action.payload);
       localStorage.setItem('routines', JSON.stringify(newRoutines));
@@ -50,14 +60,35 @@ const { reducer, actions } = createSlice({
         ...state,
         routines: newRoutines
       };
+    },
+    clickOpenEditModal: (state, { payload: id }: PayloadAction<number>) => {
+      const routine = state.routines.find(routine => routine.id === id);
+      if (!routine) {
+        return state;
+      }
+
+      return {
+        ...state,
+        routine,
+      }
     }
+    // editRoutine: (state, action: PayloadAction<number>) => {
+    //   const editedRoutines = state.routines.map(routine => routine.id === action.payload ? action : routine);
+    //   return {
+    //     ...state,
+    //     routines: editedRoutines
+    //   };
+    // }
   },
 })
 
 export const {
   addRoutine,
   setRoutines,
-  deleteRoutine
+  setRoutine,
+  deleteRoutine,
+  clickOpenEditModal
+  // editRoutine
 } = actions;
 
 export default reducer;

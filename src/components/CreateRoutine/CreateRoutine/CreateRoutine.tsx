@@ -75,8 +75,8 @@ const CreateRoutine: React.FC<Props> = (props) => {
 
   return (
     <Styled.ModalStyle
-      BackdropProps={{ style: { background: 'none' } }}
       open={open}
+      onClose={onClose}
     >
       <Styled.PopUp>
         <Styled.CloseButton onClick={onClose}>
@@ -85,7 +85,7 @@ const CreateRoutine: React.FC<Props> = (props) => {
         <Styled.CreateRoutineForm onSubmit={handleSubmit}>
           <Styled.TimeInput type="time" value={time} onChange={handleChangeTime} />
           <div>
-            <Styled.TextInput type="text" maxLength={10} placeholder="write" value={title} onChange={handleChangeTitle} />
+            <Styled.TextInput type="text" maxLength={25} placeholder="write" value={title} onChange={handleChangeTitle} />
           </div>
           <div>
             <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration} />

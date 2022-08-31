@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import CreateRoutine from '../../components/CreateRoutine/CreateRoutine';
 import DailyRoutine from '../../components/DailyRoutine';
 import { useAppSelector } from '../../hooks';
-import { addRoutine, setRoutines, setRoutine, deleteRoutine, clickOpenEditModal, editRoutine } from '../../slice/routinesSlice';
+import { addRoutine, setRoutines, deleteRoutine, clickOpenEditModal, editRoutine, updateRoutineStatus, resetRoutine } from '../../slice/routinesSlice';
 
 import * as Styled from './style';
 
@@ -30,9 +30,7 @@ const insertionSort = (arr: Routine[]) => {
 };
 
 const DailyRoutines: React.FC = () => {
-  // const [routine, setRoutine] = useState<Routine>();
   const [open, setOpen] = useState(false);
-  const storage = localStorage.getItem('routines') || '[]';
 
   const dispatch = useDispatch();
   const { routines, routine } = useAppSelector((state) => state.routines);
@@ -44,20 +42,13 @@ const DailyRoutines: React.FC = () => {
   useEffect(() => {
     const checkedRoutine = routines.find(routine => routine.completed);
     if (checkedRoutine && isOverTime(checkedRoutine)) {
-      initRoutines();
+      dispatch(resetRoutine());
     }
   }, []);
 
-  const initRoutines = () => {
-    // const newRoutines = routines.map(routine => {
-    //   return routine.completed ? { ...routine, completed: false } : routine
-    // });
-    // setRoutines(newRoutines);
-    // localStorage.setItem('routines', JSON.stringify(newRoutines));
-  }
-
-  const handleOpen = () => {
+  const handleOpenModal = () => {
     // initializeRouine()
+    dispatch(resetRoutine());
     setOpen(true);
   }
 
@@ -83,13 +74,7 @@ const DailyRoutines: React.FC = () => {
   }
 
   const handleUpdateRoutineStatus = (id: number) => {
-    // const newRoutines = routines.map((routine) => {
-    //   return routine.id === id ? (
-    //     { ...routine, completed: !routine.completed, completedTime: routine.completed ? routine.completedTime : new Date() }
-    //   ) : routine
-    // });
-    // setRoutines(newRoutines);
-    // localStorage.setItem('routines', JSON.stringify(newRoutines));
+    dispatch(updateRoutineStatus(id));
   }
 
   const countCompletedRoutines = useMemo(() =>
@@ -117,7 +102,7 @@ const DailyRoutines: React.FC = () => {
       <div style={{ textAlign: 'center' }}>
         <Styled.CreateDailyRoutine
           variant='outlined'
-          onClick={handleOpen}
+          onClick={handleOpenModal}
         >
           create routine
         </Styled.CreateDailyRoutine>

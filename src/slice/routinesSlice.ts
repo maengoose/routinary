@@ -71,6 +71,12 @@ const { reducer, actions } = createSlice({
         routine,
       }
     },
+    resetRoutine: (state) => {
+      return {
+        ...state,
+        routine: undefined
+      }
+    },
     editRoutine: (state, { payload: routine }: PayloadAction<Routine>) => {
       const routines: Routine[] = state.routines
         .map(i => (i.id === routine.id) ? routine : i);
@@ -81,7 +87,24 @@ const { reducer, actions } = createSlice({
         ...state,
         routines: routines
       };
-    }
+    },
+    updateRoutineStatus: (state, { payload: id }: PayloadAction<number>) => {
+      const updateRoutines: Routine[] = state.routines
+        .map(routine => routine.id === id ? (
+          {
+            ...routine,
+            completed: !routine.completed,
+            completedTime: routine.completed ? routine.completedTime : new Date()
+          }
+        ) : routine);
+
+      localStorage.setItem('routines', JSON.stringify(updateRoutines));
+
+      return {
+        ...state,
+        routines: updateRoutines
+      };
+    },
   },
 })
 
@@ -91,7 +114,9 @@ export const {
   setRoutine,
   deleteRoutine,
   clickOpenEditModal,
-  editRoutine
+  editRoutine,
+  resetRoutine,
+  updateRoutineStatus
 } = actions;
 
 export default reducer;

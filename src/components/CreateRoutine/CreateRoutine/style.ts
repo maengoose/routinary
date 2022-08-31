@@ -4,19 +4,15 @@ import { Button } from "@mui/material";
 
 export const ModalStyle = styled(Modal)`
   position: absolute;
-  width: 30%;
-  height: 30%;
-
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-
-  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  margin: auto auto;
 `
 
 export const CloseButton = styled(Button)`
   color: black;
+  padding: 10px;
+  min-width: 30px;
 `
 
 export const PopUp = styled.div`
@@ -24,7 +20,6 @@ export const PopUp = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-
   top: 50%;
   left: 50%;
   right: auto;
@@ -88,7 +83,11 @@ export const RangeInput = styled.input`
 `
 
 export const CreateRoutineForm = styled.form`
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  gap: 8px;
 `
 
 export const AddButton = styled.button`

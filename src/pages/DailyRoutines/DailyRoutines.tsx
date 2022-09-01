@@ -44,10 +44,9 @@ const DailyRoutines: React.FC = () => {
     if (checkedRoutine && isOverTime(checkedRoutine)) {
       dispatch(resetRoutine());
     }
-  }, []);
+  }, [routines, dispatch]);
 
   const handleOpenModal = () => {
-    // initializeRouine()
     dispatch(resetRoutine());
     setOpen(true);
   }

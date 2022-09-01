@@ -16,7 +16,7 @@ export const CloseButton = styled(Button)`
 `
 
 export const PopUp = styled.div`
-  background-color: #F9EBC8;
+  background-color: #6D8B74;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -75,7 +75,7 @@ export const RangeInput = styled.input`
   height: 30px;
   width: 10px;
   border-radius: 5px;
-  background: #9AD0EC;
+  background: #D0C9C0;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -11px;
@@ -97,7 +97,7 @@ export const AddButton = styled.button`
   background-color: #FEFBE7;
   margin: 5px;
   width: 50px;
-  height: 20px;
+  height: 25px;
   text-align: center;
   font-family: Lora;
 `

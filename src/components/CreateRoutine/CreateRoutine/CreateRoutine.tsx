@@ -13,11 +13,14 @@ type Props = {
   onEditRoutine: (routine: Routine) => void;
 };
 
+const INITIAL_DURATION = '5';
+const MAX_ROUTINE_CONTENT_LENGTH = 25;
+
 const CreateRoutine: React.FC<Props> = (props) => {
   const { open, onClose, onAddRoutine, onEditRoutine, routine } = props;
   const [title, setTitle] = useState(routine?.title || '');
   const [time, setTime] = useState('');
-  const [duration, setDuration] = useState('5');
+  const [duration, setDuration] = useState(INITIAL_DURATION);
 
   const isUpdating = routine !== undefined;
 
@@ -85,7 +88,7 @@ const CreateRoutine: React.FC<Props> = (props) => {
         <Styled.CreateRoutineForm onSubmit={handleSubmit}>
           <Styled.TimeInput type="time" value={time} onChange={handleChangeTime} />
           <div>
-            <Styled.TextInput type="text" maxLength={25} placeholder="write" value={title} onChange={handleChangeTitle} />
+            <Styled.TextInput type="text" maxLength={MAX_ROUTINE_CONTENT_LENGTH} placeholder="write" value={title} onChange={handleChangeTitle} />
           </div>
           <div>
             <Styled.RangeInput type="range" id="duration" name="duration" min="0" max="60" value={duration} step="15" onChange={handleChangeDuration} />

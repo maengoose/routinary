@@ -41,6 +41,7 @@ const MusicList: React.FC = () => {
       gif: forestGif
     }
   ];
+  
   return (
     <Styled.MusicList>
       {musicList.map(music => (
